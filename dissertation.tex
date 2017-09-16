@@ -1,0 +1,120 @@
+
+% example for dissertation.sty
+\documentclass[
+  % Replace oneside by twoside if you are printing your thesis on both sides
+  % of the paper, leave as is for single sided prints or for viewing on screen.
+  oneside,
+  %twoside,
+  11pt, a4paper,
+  footinclude=true,
+  headinclude=true,
+  cleardoublepage=empty
+]{scrbook}
+
+\usepackage[utf8]{inputenc}
+\usepackage{dissertation}
+
+\input{./extra/macros.tex}
+% ----------------------------------------------------------------
+
+% Title
+\titleA{Jtwig : Yet Another}
+\titleB{Template Engine for Java} % (if any)
+% \subtitleA{First Part of Subtitle}
+% \subtitleB{Second part of Subtitle} % (if any)
+
+% Author
+\author{João Silva de Melo}
+
+% Supervisor(s)
+\supervisor{José Bernardo Barros}
+\cosupervisor{José João}
+
+% University (uncomment if you need to change default values)
+% \def\school{Escola de Engenharia}
+% \def\department{Departamento de Inform\'{a}tica}
+% \def\university{Universidade do Minho}
+% \def\masterdegree{Computer Science}
+
+% Date
+\date{\myear} % change to text if date is not today
+
+% Keywords
+%\keywords{master thesis}
+
+% Glossaries & Acronyms
+%\makeglossaries  %  either use this ...
+%\makeindex	   % ... or this
+
+% Define Acronyms
+%\input{extra/acronyms}
+%\glsaddall[types={\acronymtype}]
+
+
+\ummetadata % add metadata to the document (author, publisher, ...)
+
+\begin{document}
+	% Cover page ---------------------------------------
+	\umfrontcover	
+	\umtitlepage
+	
+	% Add acknowledgements ----------------------------
+	\include{sections/00-acknowledgements}
+
+
+	% Add abstracts (en,pt) ---------------------------
+	\include{sections/01-abstract-en}
+	
+	\cleardoublepage
+	\include{sections/02-abstract-pt}
+	
+	
+	% Summary Lists ------------------------------------
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	%\lstlistoflistings
+	%\listofabbreviations
+	
+	
+	\pagenumbering{arabic}
+	
+	% CHAPTER - Introduction -------------------------
+	\include{sections/10-introduction}
+
+
+	% CHAPTER - State of the Art ---------------------
+	\include{sections/20-state-of-the-art}
+
+
+	% CHAPTER - Problem and Challenges ---------------
+	\include{sections/30-problem}
+	
+	% CHAPTER - Contribution -------------------------
+	\include{sections/40-contribution}
+
+
+	% CHAPTER - Analysis -------------------------
+	\include{sections/50-analysis}
+
+	% CHAPTER - Conclusion/Future Work --------------
+	\include{sections/60-conclusion}
+			
+	\bookmarksetup{startatroot} % Ends last part.
+	\addtocontents{toc}{\bigskip} % Making the table of contents look good.
+	%\cleardoublepage
+
+	%- Bibliography (needs bibtex) -%
+	\bibliography{mendeley}
+
+	% Index of terms (needs  makeindex) -------------
+	%\printindex
+	
+	
+	% APPENDIX --------------------------------------
+	\umappendix{Appendix}
+	
+	\include{sections/appendix/01-jtwig-docs}
+
+
+\end{document}
