@@ -1,18 +1,53 @@
 %!TEX root = ../dissertation.tex
+\usepackage{mdframed}
+\usepackage{xifthen}
+\usepackage{listings}
 
 \def\todo{To be done}
-%--------------------------------------------------
-
-\newenvironment{claim}
-    {\begin{center}
+\def\connection{\begin{center}
     \\
     \begin{tabular}{|p{0.9\textwidth}|}
     \hline\\
-    }
-    { 
+    Create text to connect to next Paragraph
     \\\\\hline
     \end{tabular} 
     \end{center}
-    }
+}
 %--------------------------------------------------
-\newcommand{\reference}[1]{[\cite{#1}]}
+\newcommand{\claim}[1]{(\textbf{Claim}) #1}
+% \newenvironment{claim}
+%     {\begin{center}
+%     \\
+%     \begin{tabular}{|p{0.9\textwidth}|}
+%     \hline\\
+%     }
+%     { 
+%     \\\\\hline
+%     \end{tabular} 
+%     \end{center}
+%     }
+%--------------------------------------------------
+
+\newenvironment{bookQuote}{%
+    \begin{mdframed}
+}{%
+    \end{mdframed}
+}
+
+\newenvironment{expand}{%
+    \begin{mdframed}
+    \begin{center}
+        \textbf{TODO: Expand this}
+    \end{center}
+}{%
+    \end{mdframed}
+}
+
+\newenvironment{orientador}{%
+    \begin{mdframed}
+    \begin{center}
+        \textbf{Pergunta ao Orientador}
+    \end{center}
+}{%
+    \end{mdframed}
+}

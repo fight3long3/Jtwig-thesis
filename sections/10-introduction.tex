@@ -1,20 +1,135 @@
 \chapter{Introduction}
 
-Sir Tim Berners-Lee presented the world wide web, also known as WWW, in 1989. At that time Tim Berners-Lee was not predicting how basic and important his creation would be. Although initially rejected, his proposal laid three fundamental building blocks for the web today:
+Sir Tim Berners-Lee published the proposal for the World Wide Web, commonly referred as \textbf{Web}, in 1989 \cite{Berners-Lee1989InformationProposal}. At that time Tim was not predicting how spread and important his creation would be. Although initially rejected, his proposal laid three fundamental building blocks for the web today:
 
 \begin{itemize}
     \item HTTP: Hypertext Transfer Protocol. Allows for the retrieval of linked resources from across the web.
     \item URI: Uniform Resource Identifier, also commonly called a URL, allows to uniquely identity a resource on the entire web.
-    \item HTML: HyperText Markup Language. The markup (formatting) language for the web.
+    \item HTML: HyperText Markup Language. The markup (formatting) language for the web, allowing to write, the so called, \textit{web pages}.
 \end{itemize}
 
-He also wrote the \textit{WorldWideWeb}, an HTML editor and visualisation application \reference{Gillies2000HowWeb}, that is the first ever built Browser for the web.
+Tim also wrote the \textit{WorldWideWeb}, an HTML editor and visualisation tool \cite{Gillies2000HowWeb}, which is known to be the first ever built Browser for the web.
 
-Since then web has evolved, it spread across the globe and is being used as a fundamental resource for communication nowadays. HTML also evolved, it started as static content and became a dynamic, customizable and personalizable way of reaching out to people.
+Since then web has evolved, it spread across the globe and is being used as a fundamental resource for communication nowadays. The usage of HTML specifically also evolved, it started with simple static content and became a dynamic, customizable and personalizable way of reaching out to people.
 
-At the same time this evolution was taking place, tools and concepts were being created/applied to this new world. An example of that is the concept of templates. Such concept was brought to the world of the web because of the benefits and possibilities it gives, specially, when it comes to adapt the resulting HTML and generate different flavours of content with a common structure.
+At the same time this evolution was taking place, existing concepts were being applied to this new world. An example of that is the concept of templates.
 
-Web development using Java \reference{Bloch2008EffectiveSeries}, more specifically, Java WebApps \reference{Williams2014ProfessionalApplications} has HTML formatted content \reference{Duckett2014HTMLWebsites} as the main outcome.
+\section{Template}
 
-With the era of web personalization and costumization, 
-When it comes to produce content with, specially adaptable content with a common structure, templating is always a good resource, it allows to  
+However only recently applied in many scientific areas, the concept of template is not that recent, in fact it can tracked back early in the \texttt{XIX} century.
+
+\subsection{Meaning \& Etymology}
+
+In \textit{The Century Dictionary} \cite[p.6224]{Whitney1906TheDictionary}, \texttt{template} entry is just pointing to the \texttt{templet} definition, which is used as the main entry for this concept. Below, there is an excerpt taken from page 6224 of this book.
+
+\begin{bookQuote}
+     \textbf{Templet} 
+     
+     \begin{enumerate}
+         \item A pattern, guide, or model used to indicate the shape any piece of work is to assume when finished. It may also be used as a tool in modelling plastic material, or as a guide placed in a milling-machine, shaper-lathe or other automatic cutting-machine. In these applications it maybe a thin piece of wood or metal, with one or all the edges cut in profile to the shape of the baluster, cornice, part of a machine, or other object to be wrought to shape. Templets are also used as guides in filing sheet-metal to shape, as in making small brass gears for clocks, sheets of brass being clamped between steel templets, and all the parts projecting beyond the edges being flied away. Templets are used in founding as patterns in forming moulds in loam.
+         
+         \item A strip of metal used in boiler-making, pierced with a series of holes, and serving as a guide in marking out a line of rivet-holes.
+         \item In building: (a) A short piece of timber or a large stone placed in a wall to receive the impost of a girder, beam, etc., and distribute its weight. (b) A beam or plate spanning a door or window-space to sustain joists and throw their weight on the piers. (c) One of the wedges in a building-block.
+         \item Same as temple
+         \item In a brilliant, same as bezel
+     \end{enumerate}
+\end{bookQuote}
+
+According to \cite{Barnhart1988TheEtymology} \texttt{Template} ending was created in the mid \texttt{XIX} century and was due to the association with plate. 
+
+From here, we can easily see that the concept of template exists long before web was invented, even long before programmable computers were invented \cite{Clements2014ComputerVariations}, however, the intent for optimisation was and still is a major characteristic of this technique.
+
+\subsection{Text Processing}
+
+Back to modern days, when the goal is to generate text using programming languages, some might still remember the character manipulation required in some classic languages. This is becoming increasingly easy with the most recent languages, however, creating and concatenating string constructs are still a painful way of generating large quantities of text \cite{Fowler2003PatternsArchitecture}, this lead to the introduction of templates as a concept in the text processing world.
+
+One observed evolution in programming languages and, at the same time, one of the most basic forms of templates, is the string interpolation mechanism. Perl was one of the first languages to provide native support to it \cite{Wall2000ProgrammingPerl}, below there is an example on how to do it in Perl.
+
+\begin{lstlisting}[language=Perl]
+my $time = now();
+print "Current time is $time";
+\end{lstlisting}
+
+In this example, the string can be divided in two parts, one static part and another dynamic. The dynamic part is the variable \texttt{\$time}, whether the static part is the rest. With this approach is possible to specify variables as part of a string construct. In fact, many recent languages support string interpolation, pretty much in the same way as Perl. 
+
+Generically speaking, templates can be used to take advantage of a text pattern with dynamic constructs and generate instances of text. A template, therefore, can be seen as a function with one parameter - a configuration (commonly referred as \textbf{data model}) - which produces text as output. 
+
+\begin{center}
+$Template := Configuration \rightarrow Text$
+\end{center}
+
+\begin{orientador}
+    Should I detail the mathematical definition of Template based on \cite{Parr2004EnforcingEngines} or just refer it?
+\end{orientador}
+
+\section{Web Development}
+
+When it comes to web development, more specifically, when developing dynamic web pages, templates take a key role.
+
+\begin{expand}
+    Expand this introducing the concept of MVC,
+    why it is so important for web development today (separation of concerns) and what is the contribution of templates to it with references to \cite{Fowler2003PatternsArchitecture},
+    \cite{Parr2004EnforcingEngines} and
+    \cite{Parr2008TheSeparation}
+    
+    Awesome books and articles
+\end{expand}
+
+In order to specify a template, a language is required, this is commonly referred as the \textit{Template Language}. Template languages have an inverted approach when compared to common programming languages, that is, programming languages allow developers to embed string definitions (text) in it, like Perl, for example, as shown before, whether, template languages are embedded in the text.
+
+Of course, a template instance on it's own is not enough to produce content. Associated with a template language there is always an engine to process it, so called, \textit{Template Engine}. This engine is an application which applies the template to a specific configuration generating, therefore, text as output.
+
+\begin{center}
+    $TemplateEngine := Template \times Configuration \rightarrow Text$
+\end{center}
+
+\subsection{Template Engines: Examples}
+
+Wikipedia collected \cite{WikipediaComparisonEngines} until the current date, an incomplete list of, approximately, 100 distinct template engines with associated languages.
+
+\begin{expand}
+    Talk about examples of existing template engines:
+    
+    \begin{itemize}
+        \item Perl Template Toolkit \cite{Chamberlain2003PerlToolkit}
+        \item Django Templates \cite{Newman2008DjangoMore} 
+    \end{itemize}
+\end{expand}
+
+\section{Web Development in Java}
+
+When it comes to web development using Java \cite{Bloch2008EffectiveSeries}, more specifically, Java WebApps \cite{Williams2014ProfessionalApplications}.
+
+\begin{expand}
+    Talk about MVC frameworks in Java - Spring Framwork, Struts 2
+\end{expand}
+
+\begin{expand}
+    Talk about examples of template engines for Java, used together with previous frameworks.
+    \begin{itemize}
+        \item Freemarker \cite{Forsythe2013InstantFreemarker}
+        \item Mustache
+        \cite{Forsythe2013InstantFreemarker}
+    \end{itemize}
+\end{expand}
+
+\section{The Problem}
+
+There is already a set of template technologies available in the market for the Java World, however, \claim{existing solutions have some limitations}, more specifically, \claim{long learning curve}, \claim{poor readability}, \claim{poor extendability} and, for some of them, \claim{poor expressing power}. 
+
+\begin{expand}
+    Show evidences of previous claims using the previousy mentioned template engines.
+\end{expand}
+
+\begin{expand}
+    Talk about the consequences of the problems identified.
+\end{expand}
+
+\section{The Proposed Solution}
+
+Given this, one decided to come up with a solution that could, potentially, address all of this problems, therefore, creating an alternative with capabilities not yet available in the market. This means:
+
+
+\begin{orientador}
+    How much detail should I give about the solution we propose to develop?
+\end{orientador}
