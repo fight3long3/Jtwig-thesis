@@ -1,4 +1,4 @@
-\chapter{Introduction}
+-\chapter{Introduction}
 
 Sir Tim Berners-Lee published the proposal for the World Wide Web, commonly referred as \textbf{Web}, in 1989 \cite{Berners-Lee1989InformationProposal}. At that time Tim was not predicting how spread and important his creation would be. Although initially rejected, his proposal laid three fundamental building blocks for the web today:
 
@@ -59,21 +59,39 @@ $Template := Configuration \rightarrow Text$
 \end{center}
 
 \begin{orientador}
-    Should I detail the mathematical definition of Template based on \cite{Parr2004EnforcingEngines} or just refer it?
+    Should I detail the formal definition of Template based on \cite{Parr2004EnforcingEngines} or just refer it?
 \end{orientador}
 
-\section{Web Development}
+\section{Web Development : MVC}
 
-When it comes to web development, more specifically, when developing dynamic web pages, templates take a key role.
+When it comes to web development, more specifically, when developing dynamic web pages, templates can take a key role, specially when applied using an MVC (Model View Controller) pattern.
 
-\begin{expand}
-    Expand this introducing the concept of MVC,
-    why it is so important for web development today (separation of concerns) and what is the contribution of templates to it with references to \cite{Fowler2003PatternsArchitecture},
-    \cite{Parr2004EnforcingEngines} and
-    \cite{Parr2008TheSeparation}
-    
-    Awesome books and articles
-\end{expand}
+Model View Controller is one of the most used patterns for web development. It was developed by Trygve Reenskaug for Smalltalk late in the 1970s \cite{Reenskaug1979THING-MODEL-VIEW-EDITORPlanningsystem} and it influenced most UI frameworks since then \cite{Fowler2003PatternsArchitecture}.
+
+It is important to remind the reader that this pattern was drafted before Web was invented therefore the concept required some modifications in order to adapt to the web architecture.
+
+\subsection{Original MVC}
+
+The original Model-View-Controller was built in a time where applications took complete control over the computer, with the ability to take control over both input and output devices. It was created with the main goal of bridging the gap between the user mental model and the digital model maintained by the system. A key component in this pattern is the Model, which represent the knowledge of the system backed by a source of data (database). This is the digital representation of the information on the system. To allow the user to interact with this digital knowledge, two concepts were defined, they are the View and the Controller. The View is a visual representation of the Model, it is responsible of interacting with the model in order to gather data to be shown in the output devices also as update it. The Controller is the bridge between the user input and the system. It is also responsible of organising the views in a proper manner \cite{Reenskaug1979THING-MODEL-VIEW-EDITORPlanningsystem}.
+
+
+\subsection{Benefits of MVC}
+
+The main benefit of adopting MVC when developing user facing applications it’s the separation of concerns it embodies. The Model and View address two completely distinct domains, while the Model takes care of the business rules, the View addresses the mechanisms of the UI. The Controller is commonly seen as the bridge between View and Model. This approach makes the View dependent on the Model, but that dependency doesn’t exist in reverse, that means, the Model is independent from the View, therefore allowing people developing the Model complete unaware of the View \cite{Parr2008TheSeparation, Parr2004EnforcingEngines, Fowler2003PatternsArchitecture}.
+
+Splitting the business logic domain and display logic allows to have different people with a distinct set of skills addressing each layer individually, making it easier to maintain and think about.
+
+\subsection{Web MVC}
+
+As per Martin Fowler \cite{Fowler2003PatternsArchitecture} definition, the adoption of MVC on the Web suffers a slight adaptation. The Model concept still accounts for the representation of the knowledge, however the View is only about displaying information on the UI. All the changes in the Model are performed by the Controller component. The controller bridges the gap between the user requests and system, also taking care of updating the views accordingly.
+
+\subsubsection{Controller}
+
+There is multiple ways to approach the Controller layer in an MVC pattern within Web Development. The most commonly used are Page Controller and Front Controller. In the first one, each page or action have a specific handler, where in the later there is one handler managing and routing all the incoming requests, usually the Front Controller approach delegates to specific handlers making both Page and Front Controller very similar. 
+
+\subsubsection{Template View}
+
+Template View is an approach used in the display stage of the MVC pattern applied to the Web, the idea behind it is to embed markers in HTML files which are computed and replaced by the result of processing them.
 
 In order to specify a template, a language is required, this is commonly referred as the \textit{Template Language}. Template languages have an inverted approach when compared to common programming languages, that is, programming languages allow developers to embed string definitions (text) in it, like Perl, for example, as shown before, whether, template languages are embedded in the text.
 
@@ -83,7 +101,7 @@ Of course, a template instance on it's own is not enough to produce content. Ass
     $TemplateEngine := Template \times Configuration \rightarrow Text$
 \end{center}
 
-\subsection{Template Engines: Examples}
+\subsection{Template Engines : Examples}
 
 Wikipedia collected \cite{WikipediaComparisonEngines} until the current date, an incomplete list of, approximately, 100 distinct template engines with associated languages.
 
@@ -96,13 +114,28 @@ Wikipedia collected \cite{WikipediaComparisonEngines} until the current date, an
     \end{itemize}
 \end{expand}
 
-\section{Web Development in Java}
 
-When it comes to web development using Java \cite{Bloch2008EffectiveSeries}, more specifically, Java WebApps \cite{Williams2014ProfessionalApplications}.
+\section{MVC in Java Webapps}
+
+Java Webapps are defined by the jsr.. it embodies a set of APIs to enable Java developers to implement web applications. The main concept is the Servlet, an handler for a specific URL pattern. This Servlets require an webapp container able to associate the URL pattern to a specific Servlet implementation, an example of that is the Apache Tomcat. 
+
+MVC, specially using a Front Controller approach, created an opportunity for Frameworks to appear. 
 
 \begin{expand}
-    Talk about MVC frameworks in Java - Spring Framwork, Struts 2
+    Expand the concept of frameworks \cite{Liu1996SmalltalkDesign}
 \end{expand}
+
+In Java, several technologies were created and offered to the general public as open source contributions. Spring Framework and Struts are two well known examples.
+
+This frameworks take advantage of the Front Controller approach and set one handler which then routes the requests to smaller components. This Frameworks ease the initial setup and work of developing web applications providing APIs for different purposes, one of those is the integration with a Template View approach.
+
+\begin{expand}
+    Talk about Spring...\cite{Johnson2005ProfessionalFramework}
+    
+    Spring specifically evolved from a simple Dependency Injection and Inversion of Control with MVC support Framework into a community with distinct projects to address different needs in Java applications.
+\end{expand}
+
+When it comes to web development using Java \cite{Bloch2008EffectiveSeries}, more specifically, Java WebApps \cite{Williams2014ProfessionalApplications}.
 
 \begin{expand}
     Talk about examples of template engines for Java, used together with previous frameworks.
@@ -131,5 +164,5 @@ Given this, one decided to come up with a solution that could, potentially, addr
 
 
 \begin{orientador}
-    How much detail should I give about the solution we propose to develop?
+    How much detail should I give about the solution we are proposing to develop?
 \end{orientador}
