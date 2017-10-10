@@ -49,35 +49,60 @@ Java technology is both a programming language and a platform \cite{firstcup}. J
 
 \begin{itemize}
 	\item Java SE (Standard Edition), this Platform specifies the most common API, it defines everything from the basic types and objects to the high level classes used for networking, security, database access and so on. This Platform is what usually runs on personal computers.
-	\item Java EE (Enterprise Edition), the enterprise edition is built on top of the Java SE with additions to allow running large-scale, multi-tiered, scalable, reliable and secure network applications \cite{firstcup}.
+	\item Java EE (Enterprise Edition), the enterprise edition is built on top of the Java SE with additions to allow running large-scale, multi-tiered, scalable, reliable and secure network applications \cite{OracleJavaPlatform}.
 	\item Java ME (Micro Edition), is a small-footprint Platform for small devices, like mobile phones.
 \end{itemize}
 
 \subsection{Java EE}
 
-Java Enterprise Edition, initially, J2EE (Java 2 Platform, Enterprise Edition) specification is available under the JSR (Java Specification Request) 58. This platform was created with the intention to reduce the cost and complexity of developing multi-tier services \cite{jsr58}, \cite{javaEEDeveloperGuide}. 
+Java Enterprise Edition, initially, J2EE (Java 2 Platform, Enterprise Edition) specification is available under the JSR (Java Specification Request) 58. This platform was created with the intention to reduce the cost and complexity of developing multi-tier services \cite{SunMicrosystemsJSRSpecification}, \cite{SunMicrosystems200JavaGuide}, \cite{Bloch2008EffectiveSeries}. 
 
-Under the context of Java EE, a web tier was designed to support the development of web applications. It is a set of components which handle the interaction between clients and the business logic, it consists mainly on the Servlet and JSP (JavaServer Pages) APIs\cite{jsrServletAPI}.
+Under the context of Java EE, a web tier was designed to support the development of web applications. It is a set of components which handle the interaction between clients and the business logic, it consists mainly on the Servlet and JSP (JavaServer Pages) APIs \cite{Mordani2003JSRSpecification, Mordan2009JSRSpecification, waiChan2013JSRSpecification}.
 
-However an initial step towards standardisation, Java EE had issues. As \cite{javaDevelopmentWithSpring} identifies, Java EE applications were complex, took excessive effort to develop and exhibit disappointing performance.
+However an initial step towards standardisation, Java EE had issues. As \cite{Johnson2005ProfessionalFramework} identifies, Java EE applications were complex, took excessive effort to develop and exhibit disappointing performance.
 
-In order to address this problems, two approaches were being used, (1) code generation tools and (2) frameworks. While the first addresses the complexity by creating a shortcut for development without removing any of the complexity, the second approach allows for a coherent and simplified abstraction, thus making the framework approach much more attractive for developers.
+In order to address this problems, two main approaches were being used, (1) code generation tools and (2) frameworks. While the first addresses the complexity by creating a shortcut for development without removing any of the complexity, the second approach allows for a coherent and simplified abstraction, thus making the framework approach much more attractive for developers in general.
 
 \subsection{Framework}
 
-A framework is a general skeleton for a software application \cite{smaltalk}. On the object oriented world, they typically serve to implement (larger scale) components using user provided (smaller scale) classes \cite{thesis}. In technical terms, it can be seen as a body of code which can be reused in different projects \cite{smaltalk}, systems based on frameworks are easier to maintain because most of the key design and implementation decisions are localised in the framework itself.  On the business side, frameworks allow higher productivity and shorter time-to-market for new applications \cite{thesis}.
+A framework is a general skeleton for a software application \cite{Liu1996SmalltalkDesign}. On the object oriented world, they typically serve to implement (larger scale) components using user provided (smaller scale) classes \cite{Riehle200FrameworkApproach}. In technical terms, it can be seen as a body of code which can be reused in different projects \cite{Liu1996SmalltalkDesign}, systems based on frameworks are easier to maintain because most of the key design and implementation decisions are localised in the framework itself.  On the business side, frameworks allow higher productivity and shorter time-to-market for new applications \cite{Riehle200FrameworkApproach}.
+An example of a Framework in the Java world is the Spring Framework.
 
 \subsection{Spring Framework}
 
-\begin{expand}
-    Talk about Spring...\cite{Johnson2005ProfessionalFramework}
-    
-    Spring specifically evolved from a simple Dependency Injection and Inversion of Control with MVC support Framework into a community with distinct projects to address different needs in Java applications.
-\end{expand}
+The first version of the Spring framework was written by Rod Johnson and it was released with the publication of his book Expert One-on-One J2EE Design and Development \cite{Johnson2003ExpertDevelopment}. Spring Framework is the first lightweight framework to address all architectural tiers of a typical Java EE application. ightweight frameworks enable developers to work with POJOs (Plain Old Java Objects) rather than having to follow strict conventions, as for example, Enterprise Java Beans (EJB) \cite{SunMicrosystemsJSRSpecification, Johnson2005ProfessionalFramework, Johnson2003ExpertDevelopment}. As defined by the Java EE API, an EJB class must obey to the following rules:
 
-When it comes to web development using Java \cite{Bloch2008EffectiveSeries}, more specifically, Java WebApps \cite{Williams2014ProfessionalApplications}.
+\begin{itemize}
+	\item implement either Serializable or Externalizable;
+	\item have a public no-arg constructor;
+	\item all properties must have public setter and getter methods (as appropriate);
+	\item all instance variables should be private;
+\end{itemize}
+h
+Below there is an example of an EJB.
 
-This frameworks take advantage of the Front Controller approach and set one handler which then routes the requests to smaller components. This Frameworks ease the initial setup and work of developing web applications providing APIs for different purposes, one of those is the integration with a Template View approach.
+\lstinputlisting[language=Java, caption=]{code/introduction/PersonBean.java}
+
+As one can see, the example above follows the conventions mentioned before. Lightweight frameworks remove the need for this boiler plate code by using POJOs. A POJO can be seen as a class without rules, it does not need to follow any of the Java object models or conventions, therefore enabling developers to focus on the business logic.
+
+Spring can be divided into distinct modules, in summary:
+
+\begin{review}
+\begin{itemize}
+	\item \textbf{Inversion of Control Container} The core "container" Spring provides, enabling sophisticated configuration management for POJOs and work with other parts of Spring.
+	\item \textbf{Aspect-Oriented Programming (AOP) framework} AOP enables behavior that would otherwise be scattered through different methods to be modularized in a single place. Spring uses AOP under the hood to deliver important out-of-the-box services such as declarative transaction management. Spring AOP can also be used to implement custom code that would otherwise be scattered between application classes.
+	\item \textbf{Data access abstraction} Spring encourages a consistent architectural approach to data access, and provides a unique and powerful abstraction to implement it. Spring provides a rich hierarchy of data access exceptions, independent of any particular persistence product. It also provides a range of helper services for leading persistence APIs, enabling developers to write persistence framework–agnostic data access interfaces and implement them with the tool of their choice.
+	\item \textbf{JDBC simplification} Spring provides an abstraction layer over JDBC that is significantly simpler and less error-prone to use than JDBC when you need to use SQL-based access to relational databases.
+	\item \textbf{Transaction management} Spring provides a transaction abstraction that can sit over JTA "global" transactions (managed by an application server) or "local" transactions using the JDBC, Hibernate, JDO, or another data access API. This abstraction provides a consistent programming model in a wide range of environments and is the basis for Spring's declarative and programmatic transaction management.
+	\item \textbf{Simplification for working with JNDI, JTA, and other J2EE APIs} Spring can help remove the need for much of the verbose, boilerplate code that "doesn't do anything." With Spring, you can continue to use JNDI or EJB, if you want, but you'll never need to write another JNDI lookup. Instead, simple configuration can result in Spring performing the lookup on your behalf, guaranteeing that resources such as JNDI contexts are closed even in the event of an exception. The dividend is that you get to focus on writing code that you need to write because it relates to your business domain.
+	\item \textbf{Lightweight remoting} Spring provides support for POJO-based remoting over a range of protocols, including RMI, IIOP, and Hessian, Burlap, and other web services protocols.
+	\item \textbf{JMS support} Spring provides support for sending and receiving JMS messages in a much simpler way than provided through standard J2EE.
+	\item \textbf{JMX support} Spring supports JMX management of application objects it configures.
+	\item \textbf{MVC web framework} Spring provides a request-based MVC web framework which integrates seamlessly with the Spring IoC container. 
+\end{itemize}
+\end{review}
+
+Please refer to \cite{Johnson2005ProfessionalFramework} for futher details on each of the modules. For the purpose of this study one will focus on the MVC framework. This MVC frameworks take advantage of the Front Controller approach and set one handler which then routes the requests to smaller components. This Frameworks ease the initial setup and work of developing web applications providing APIs for different purposes, one of those is the integration with a Template View approach.
 
 One of the many options Spring offers is the ability to integrate a Template mechanism.
 
@@ -137,27 +162,37 @@ Of course, a template instance on it's own is not enough to produce content. Ass
     $TemplateEngine := Template \times Configuration \rightarrow Text$
 \end{center}
 
-\subsection{Template Engines : Examples}
+Wikipedia collected \cite{WikipediaComparisonEngines} until the current date, an incomplete list of, approximately, 100 distinct template engines with associated languages. Between them, one can find, for example, \textbf{Mustache} \cite{mustache} and freemarker \cite{Forsythe2013InstantFreemarker}.
 
-Wikipedia collected \cite{WikipediaComparisonEngines} until the current date, an incomplete list of, approximately, 100 distinct template engines with associated languages.
+\subsection{Mustache}
+
+\begin{review}
+Mustache is presented to the community as a "logic-less" template engine. It is called "logic-less" because there are no if statements, else clauses, or for loops. Instead there are only tags. Some tags are replaced with a value, some nothing, and others a series of values. 
+Tags are indicated by the double curly brakets. For example, \texttt{\{\{person\}\}} is a tag, as is \texttt{\{\{#person\}\}}. In both examples, one could refer to person as the key or tag key. The possible tags are:
+
+\begin{itemize}
+    \item Variable \todo
+    \item Section \todo
+    \item Inverted Sections \todo
+    \item Partials \todo
+\end{itemize}
+
+Mustache is a good example of a simple template engine which attempts to reduce template complexity by limiting developers. It tries to get away from the concept of control flow and, instead, present developers the concept of tags, tags can adopt different behaviour depending on the context.
 
 \begin{expand}
-    Talk about examples of existing template engines:
-    
-    \begin{itemize}
-        \item Perl Template Toolkit \cite{Chamberlain2003PerlToolkit}
-        \item Django Templates \cite{Newman2008DjangoMore} 
-    \end{itemize}
+    Expand mustache in order to introduce "the problem"
 \end{expand}
+\end{review}
+
+\subsection{Freemarker}
+
+\begin{review}
+Apache FreeMarker is a template engine: a Java library to generate text output (HTML web pages, e-mails, configuration files, source code, etc.) based on templates and changing data. Templates are written in the FreeMarker Template Language (FTL), which is a simple, specialized language (not a full-blown programming language like PHP). You meant to prepare the data to display in a real programming language, like issue database queries and do business calculations, and then the template displays that already prepared data. In the template you are focusing on how to present the data, and outside the template you are focusing on what data to present.
 
 \begin{expand}
-    Talk about examples of template engines for Java, used together with previous frameworks.
-    \begin{itemize}
-        \item Freemarker \cite{Forsythe2013InstantFreemarker}
-        \item Mustache
-        \cite{Forsythe2013InstantFreemarker}
-    \end{itemize}
+    More details about freemarker, giving space for presenting "The Problem"
 \end{expand}
+\end{review}
 
 \section{The Problem}
 
